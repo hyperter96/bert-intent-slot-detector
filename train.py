@@ -33,6 +33,8 @@ def evaluate_model(args, model, tokenizer, test_data, intent_dict, slot_dict):
     def filter_slots(text, slots):
         outputs = {}
         for slot_name, slot_value_list in slots.items():
+            if not isinstance(slot_value_list, list):
+                slot_value_list = [slot_value_list]
             output_value_list = []
             for slot_value in slot_value_list:
                 if slot_value in text:
